@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Heads Or Tails</title>
+</head>
+<body>
+    <div class="package">
+        <div class="container">
+            <img src="https://www.iconpacks.net/icons/1/free-coin-icon-794-thumb.png" id="img">
+            <div class="message">select Heads or tails</div>
+            <div id="btn-container">
+                <button class="btn" type="button">Heads</button>
+                <button class="btn" type="button">Tails</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        const coinarray = ["Heads","Tails"];
+        let score = [0,0];
+        const message = document.querySelector('.message');
+        const buttons = document.querySelectorAll('button');
+        for(let i=0;i<buttons.length;i++){
+            buttons[i].addEventListener("click",tosscoin);
+        }
+
+        function tosscoin(e){
+            let playerguess = e.target.innerText;
+            let computertoss = Math.floor(Math.random()*2);
+            let computerguess= coinarray[computertoss];
+            message.innerHTML = "computer guessed: "+ computerguess;
+            let output;
+            if(playerguess===computerguess){
+                output=" player won.";
+                score[0]++;
+            }else{
+                output=" computer won.";
+                score[1]++;
+            }
+            message.innerHTML += "<br>" +output + "<br> Player: " + score[0] + " computer: " + score[1];
+        }
+
+    </script>
+</body>
+</html>
